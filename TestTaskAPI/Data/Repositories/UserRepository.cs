@@ -1,6 +1,6 @@
 ﻿using TestTaskAPI.Models;
 
-namespace TestTaskAPI.Data
+namespace TestTaskAPI.Data.Repositories
 {
     public class UserRepository : IUserRepository
     {
@@ -17,9 +17,14 @@ namespace TestTaskAPI.Data
             return user;
         }
 
+        public User GetByUsername(string username)
+        {
+            return _dbContext.Users.FirstOrDefault(u => u.Username == username);
+        }
+
         public User GetById(int id)
         {
-            throw new NotImplementedException();
+            return _dbContext.Users.FirstOrDefault(u => u.Id == id);
         }
     }
 }
